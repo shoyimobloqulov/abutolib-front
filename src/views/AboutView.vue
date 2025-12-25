@@ -165,7 +165,7 @@
         >
           Bog'lanish
         </RouterLink>
-        <RouterLink 
+         <RouterLink 
           to="/login" 
           class="inline-block bg-transparent border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-blue-600 transition"
         >
