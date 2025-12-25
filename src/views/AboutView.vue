@@ -152,6 +152,65 @@
       </div>
     </section>
 
+    <!-- Team Members -->
+  <section class="mb-12">
+    <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">
+      Jamoa a'zolari
+    </h2>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div
+          v-for="member in team"
+          :key="member.id"
+          class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2"
+        >
+          <!-- Image -->
+          <div class="overflow-hidden rounded-t-2xl">
+            <img
+              :src="member.image"
+              :alt="member.name"
+              class="w-full h-64 object-cover hover:scale-105 transition duration-300"
+            />
+          </div>
+
+          <!-- Info -->
+          <div class="p-6 text-center">
+            <h3 class="text-xl font-bold text-gray-800">
+              {{ member.name }}
+            </h3>
+            <p class="text-indigo-600 font-semibold mb-3">
+              {{ member.role }}
+            </p>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              {{ member.bio }}
+            </p>
+
+            <!-- Social -->
+            <div class="flex justify-center gap-4 mt-4">
+              <a
+                :href="member.linkedin"
+                target="_blank"
+                rel="noopener"
+                class="text-gray-400 hover:text-blue-600"
+              >
+                LinkedIn
+              </a>
+
+              <a
+                :href="member.github"
+                target="_blank"
+                rel="noopener"
+                class="text-gray-400 hover:text-gray-900"
+              >
+                GitHub
+              </a>
+
+            </div>
+          </div>
+        </div>
+        </div>
+  </section>
+
     <!-- CTA Section -->
     <section class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white rounded-2xl p-12 text-center shadow-2xl">
       <h2 class="text-4xl font-bold mb-4">Savollaringiz bormi?</h2>
@@ -174,8 +233,30 @@
       </div>
     </section>
   </div>
+
 </template>
 
 <script setup>
 import { RouterLink } from 'vue-router'
+
+const team = [
+  {
+    id: 1,
+    name: "Mamayusuf Tursoatov",
+    role: "Founder & CEO",
+    linkedin: "https://www.linkedin.com/in/mamayusuf-tursoatov-3b7245234/",
+    github: "https://github.com/mamayusuf-tursoatov", 
+    bio: "Platforma asoschisi va loyiha bosh menejeri.",
+    image: new URL('@/assets/images/team/photo_2025-12-23_17-01-22.jpg', import.meta.url).href
+  },
+  {
+    id: 2,
+    name: "Shoyim Obloqulov",
+    role: "Developer",
+    linkedin: "https://www.linkedin.com/in/shoyim-obloqulov-5b7245234/",
+    github: "https://github.com/shoyimobloqulov",
+    bio: "Full stack dasturchi va texnik yechimlar bo'yicha mutaxassis.",
+    image: new URL('@/assets/images/team/photo_2025-12-17_16-29-13.jpg', import.meta.url).href
+  },  
+]
 </script>
