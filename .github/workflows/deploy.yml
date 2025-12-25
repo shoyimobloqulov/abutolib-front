@@ -3,36 +3,44 @@ name: Build and Deploy Vue App to reg.ru Hosting
 on:
   push:
     branches:
-      - main  # Trigger on push to main branch
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest
 
-    steps:  
-      - name: 🔄 Checkout repository   
-        uses: actions/checkout@v3
+    steps:
+      # 1️⃣ Repository ni yuklab olish
+      - name: 🔄 Checkout repository
+        uses: actions/checkout@v4
 
+      # 2️⃣ Node.js 20 o‘rnatish (Vite 7 TALABI)
       - name: 📦 Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
+          cache: 'npm'
 
+      # 3️⃣ Dependency larni o‘rnatish
       - name: 🧱 Install dependencies
         run: npm install
 
+      # 4️⃣ Build qilish
       - name: 🏗️ Build Vue.js app
         run: npm run build
 
+      # 5️⃣ SPA uchun .htaccess yaratish
       - name: ✨ Create .htaccess file
         run: |
           echo "<IfModule mod_rewrite.c>" > dist/.htaccess
-          echo "  RewriteEngine On" >> dist/.htaccess
-          echo "  RewriteBase /" >> dist/.htaccess
-          echo "  RewriteCond %{REQUEST_FILENAME} !-f" >> dist/.htaccess
-          echo "  RewriteCond %{REQUEST_FILENAME} !-d" >> dist/.htaccess
-          echo "  RewriteRule ^.*$ index.html [L]" >> dist/.htaccess
+          echo "RewriteEngine On" >> dist/.htaccess
+          echo "RewriteBase /" >> dist/.htaccess
+          echo "RewriteCond %{REQUEST_FILENAME} !-f" >> dist/.htaccess
+          echo "RewriteCond %{REQUEST_FILENAME} !-d" >> dist/.htaccess
+          echo "RewriteRule ^.*$ index.html [L]" >> dist/.htaccess
+          echo "</IfModule>" >> dist/.htaccess
 
+      # 6️⃣ reg.ru ga FTP orqali deploy
       - name: 🚀 FTP Deploy to reg.ru hosting
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
