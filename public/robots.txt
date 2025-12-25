@@ -1,0 +1,26 @@
+# robots.txt for Abutolib
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://abutolib.uz/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10
+
+# Allow specific bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 5
