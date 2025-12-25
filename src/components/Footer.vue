@@ -127,8 +127,8 @@
             <li class="flex items-start text-gray-400">
               <span class="text-blue-400 mr-3 text-xl">📞</span>
               <div>
-                <div>+998 71 123 45 67</div>
-                <div>+998 90 123 45 67</div>
+                <div>+998 99 343 68 20</div>
+                <div>+998 91 902 72 03</div>
               </div>
             </li>
             <li class="flex items-start text-gray-400">

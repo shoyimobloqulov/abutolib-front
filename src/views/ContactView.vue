@@ -112,8 +112,8 @@
               <div class="text-4xl mr-5">📞</div>
               <div>
                 <h3 class="font-bold text-gray-800 mb-2 text-xl">Telefon</h3>
-                <p class="text-gray-700 text-lg font-semibold mb-1">+998 71 123 45 67</p>
-                <p class="text-gray-700 text-lg font-semibold">+998 90 123 45 67</p>
+                <p class="text-gray-700 text-lg font-semibold mb-1">+998 91 902 72 03</p>
+                <p class="text-gray-700 text-lg font-semibold">+998 99 343 68 20</p>
                 <p class="text-gray-500 text-sm mt-2">Dushanba - Juma: 9:00 - 18:00</p>
               </div>
             </div>
