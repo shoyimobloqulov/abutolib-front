@@ -1,9 +1,9 @@
 <template>
   <div class="statistics">
     <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 text-white rounded-2xl p-12 md:p-16 mb-12 shadow-2xl">
+    <section class="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 text-white rounded-2xl p-12 md:p-16 mb-12 shadow-2xl mx-4">
       <div class="max-w-4xl mx-auto text-center">
-        <div class="text-6xl mb-6">📊</div>
+        <BarChart3 class="w-24 h-24 mx-auto mb-6" strokeWidth={1.5} />
         <h1 class="text-5xl md:text-6xl font-bold mb-6">Statistika</h1>
         <p class="text-xl md:text-2xl text-pink-100 leading-relaxed">
           Platformamizning to'liq statistik ma'lumotlari va yutuqlari
@@ -11,97 +11,110 @@
       </div>
     </section>
 
-    <!-- Main Stats - Super Katta -->
-    <section class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+    <!-- Main Stats -->
+    <section class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 px-4 max-w-7xl mx-auto">
       <div class="bg-gradient-to-br from-blue-500 to-blue-700 text-white p-8 rounded-2xl shadow-2xl transform hover:scale-105 transition duration-300">
-        <div class="text-5xl mb-4">📚</div>
+        <BookOpen class="w-14 h-14 mb-4" strokeWidth={1.5} />
         <div class="text-6xl font-bold mb-2">{{ stats.books }}</div>
         <div class="text-blue-100 text-xl font-semibold mb-4">Testlar soni</div>
         <div class="flex items-center text-blue-200">
-          <span class="mr-2">📈</span>
+          <TrendingUp class="w-5 h-5 mr-2" strokeWidth={1.5} />
           <span>+45 yangi test</span>
         </div>
       </div>
 
       <div class="bg-gradient-to-br from-green-500 to-green-700 text-white p-8 rounded-2xl shadow-2xl transform hover:scale-105 transition duration-300">
-        <div class="text-5xl mb-4">👥</div>
+        <Users class="w-14 h-14 mb-4" strokeWidth={1.5} />
         <div class="text-6xl font-bold mb-2">{{ stats.users.toLocaleString() }}</div>
         <div class="text-green-100 text-xl font-semibold mb-4">Foydalanuvchilar</div>
         <div class="flex items-center text-green-200">
-          <span class="mr-2">🎉</span>
+          <Smile class="w-5 h-5 mr-2" strokeWidth={1.5} />
           <span>+234 bugun</span>
         </div>
       </div>
 
       <div class="bg-gradient-to-br from-purple-500 to-purple-700 text-white p-8 rounded-2xl shadow-2xl transform hover:scale-105 transition duration-300">
-        <div class="text-5xl mb-4">📖</div>
+        <Zap class="w-14 h-14 mb-4" strokeWidth={1.5} />
         <div class="text-6xl font-bold mb-2">{{ stats.activeReaders.toLocaleString() }}</div>
         <div class="text-purple-100 text-xl font-semibold mb-4">Faol o'quvchilar</div>
         <div class="flex items-center text-purple-200">
-          <span class="mr-2">⚡</span>
+          <Activity class="w-5 h-5 mr-2" strokeWidth={1.5} />
           <span>Onlayn hozir</span>
         </div>
       </div>
 
       <div class="bg-gradient-to-br from-orange-500 to-orange-700 text-white p-8 rounded-2xl shadow-2xl transform hover:scale-105 transition duration-300">
-        <div class="text-5xl mb-4">⭐</div>
+        <Star class="w-14 h-14 mb-4" strokeWidth={1.5} fill="currentColor" />
         <div class="text-6xl font-bold mb-2">{{ stats.reviews.toLocaleString() }}</div>
         <div class="text-orange-100 text-xl font-semibold mb-4">Umumiy baholash</div>
         <div class="flex items-center text-orange-200">
-          <span class="mr-2">⭐⭐⭐⭐⭐</span>
-          <span>4.9/5</span>
+          <Star class="w-5 h-5" strokeWidth={2} fill="currentColor" />
+          <span class="ml-2">4.9/5</span>
         </div>
       </div>
     </section>
 
-    <!-- Monthly Stats - Kattaroq -->
-    <section class="bg-white rounded-2xl shadow-xl p-10 mb-12">
-      <div class="flex items-center justify-between mb-8">
-        <h2 class="text-3xl font-bold text-gray-800">Oylik statistika</h2>
-        <div class="bg-green-100 text-green-700 px-4 py-2 rounded-lg font-semibold">
-          📈 Dekabr 2025
+    <!-- Monthly Stats -->
+    <section class="bg-white rounded-2xl shadow-xl p-10 mb-12 mx-4 max-w-7xl mx-auto">
+      <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
+        <h2 class="text-3xl font-bold text-gray-800 flex items-center gap-2">
+          <Calendar class="w-8 h-8 text-purple-600" strokeWidth={1.5} />
+          Oylik statistika
+        </h2>
+        <div class="bg-green-100 text-green-700 px-4 py-2 rounded-lg font-semibold flex items-center gap-2">
+          <TrendingUp class="w-5 h-5" strokeWidth={1.5} />
+          Dekabr 2025
         </div>
       </div>
       
       <div class="grid md:grid-cols-3 gap-8">
         <div class="bg-gradient-to-br from-blue-50 to-blue-100 border-l-4 border-blue-500 p-6 rounded-xl hover:shadow-lg transition">
           <div class="flex items-center justify-between mb-4">
-            <div class="text-4xl">📚</div>
+            <BookPlus class="w-12 h-12 text-blue-600" strokeWidth={1.5} />
             <div class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">+{{ monthlyStats.newBooks }}</div>
           </div>
           <div class="text-4xl font-bold text-gray-800 mb-2">{{ monthlyStats.newBooks }}</div>
           <div class="text-gray-600 text-lg font-semibold">Yangi testlar</div>
-          <div class="text-green-600 text-sm mt-2">↑ 15% o'sish</div>
+          <div class="text-green-600 text-sm mt-2 flex items-center gap-1">
+            <ArrowUpRight class="w-4 h-4" strokeWidth={2} />
+            15% o'sish
+          </div>
         </div>
 
         <div class="bg-gradient-to-br from-green-50 to-green-100 border-l-4 border-green-500 p-6 rounded-xl hover:shadow-lg transition">
           <div class="flex items-center justify-between mb-4">
-            <div class="text-4xl">👤</div>
+            <UserPlus class="w-12 h-12 text-green-600" strokeWidth={1.5} />
             <div class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">+{{ monthlyStats.newUsers }}</div>
           </div>
           <div class="text-4xl font-bold text-gray-800 mb-2">{{ monthlyStats.newUsers }}</div>
           <div class="text-gray-600 text-lg font-semibold">Yangi foydalanuvchilar</div>
-          <div class="text-green-600 text-sm mt-2">↑ 23% o'sish</div>
+          <div class="text-green-600 text-sm mt-2 flex items-center gap-1">
+            <ArrowUpRight class="w-4 h-4" strokeWidth={2} />
+            23% o'sish
+          </div>
         </div>
 
         <div class="bg-gradient-to-br from-purple-50 to-purple-100 border-l-4 border-purple-500 p-6 rounded-xl hover:shadow-lg transition">
           <div class="flex items-center justify-between mb-4">
-            <div class="text-4xl">✅</div>
+            <CheckCircle2 class="w-12 h-12 text-purple-600" strokeWidth={1.5} />
             <div class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold">{{ monthlyStats.borrowedBooks }}</div>
           </div>
           <div class="text-4xl font-bold text-gray-800 mb-2">{{ monthlyStats.borrowedBooks.toLocaleString() }}</div>
           <div class="text-gray-600 text-lg font-semibold">Topshirilgan testlar</div>
-          <div class="text-green-600 text-sm mt-2">↑ 31% o'sish</div>
+          <div class="text-green-600 text-sm mt-2 flex items-center gap-1">
+            <ArrowUpRight class="w-4 h-4" strokeWidth={2} />
+            31% o'sish
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Top Performance -->
-    <section class="grid md:grid-cols-2 gap-8 mb-12">
+    <section class="grid md:grid-cols-2 gap-8 mb-12 px-4 max-w-7xl mx-auto">
       <!-- Popular Categories -->
       <div class="bg-white rounded-2xl shadow-xl p-8">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800 flex items-center">
-          <span class="mr-3">🏆</span>
+        <h2 class="text-3xl font-bold mb-6 text-gray-800 flex items-center gap-2">
+          <Trophy class="w-8 h-8 text-yellow-600" strokeWidth={1.5} />
           Mashhur kategoriyalar
         </h2>
         <div class="space-y-4">
@@ -129,8 +142,8 @@
 
       <!-- Recent Activity -->
       <div class="bg-white rounded-2xl shadow-xl p-8">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800 flex items-center">
-          <span class="mr-3">⚡</span>
+        <h2 class="text-3xl font-bold mb-6 text-gray-800 flex items-center gap-2">
+          <Zap class="w-8 h-8 text-yellow-500" strokeWidth={1.5} />
           So'nggi faollik
         </h2>
         <div class="space-y-4">
@@ -138,7 +151,10 @@
             <div class="text-3xl mr-4">{{ activity.icon }}</div>
             <div class="flex-1">
               <div class="font-semibold text-gray-800">{{ activity.title }}</div>
-              <div class="text-sm text-gray-600">{{ activity.time }}</div>
+              <div class="text-sm text-gray-600 flex items-center gap-1">
+                <Clock class="w-3 h-3" strokeWidth={2} />
+                {{ activity.time }}
+              </div>
             </div>
             <div class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
               {{ activity.badge }}
@@ -149,27 +165,31 @@
     </section>
 
     <!-- Achievement Section -->
-    <section class="bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 text-white rounded-2xl p-12 shadow-2xl">
+    <section class="bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 text-white rounded-2xl p-12 shadow-2xl mx-4 mb-4">
       <div class="text-center mb-10">
-        <div class="text-7xl mb-6">🏆</div>
+        <Trophy class="w-32 h-32 mx-auto mb-6" strokeWidth={1} fill="currentColor" />
         <h2 class="text-4xl font-bold mb-4">Bizning yutuqlarimiz</h2>
         <p class="text-xl text-yellow-100">Platformaning umumiy natijalari</p>
       </div>
       
       <div class="grid md:grid-cols-4 gap-6">
         <div class="bg-white/20 backdrop-blur-sm p-6 rounded-xl text-center hover:bg-white/30 transition">
+          <CheckCircle2 class="w-12 h-12 mx-auto mb-4" strokeWidth={1.5} />
           <div class="text-4xl font-bold mb-2">50K+</div>
           <div class="text-yellow-100">Topshirilgan testlar</div>
         </div>
         <div class="bg-white/20 backdrop-blur-sm p-6 rounded-xl text-center hover:bg-white/30 transition">
+          <TrendingUp class="w-12 h-12 mx-auto mb-4" strokeWidth={1.5} />
           <div class="text-4xl font-bold mb-2">95%</div>
           <div class="text-yellow-100">O'rtacha ball</div>
         </div>
         <div class="bg-white/20 backdrop-blur-sm p-6 rounded-xl text-center hover:bg-white/30 transition">
+          <Clock class="w-12 h-12 mx-auto mb-4" strokeWidth={1.5} />
           <div class="text-4xl font-bold mb-2">24/7</div>
           <div class="text-yellow-100">Xizmat vaqti</div>
         </div>
         <div class="bg-white/20 backdrop-blur-sm p-6 rounded-xl text-center hover:bg-white/30 transition">
+          <Star class="w-12 h-12 mx-auto mb-4" strokeWidth={1.5} fill="currentColor" />
           <div class="text-4xl font-bold mb-2">4.9★</div>
           <div class="text-yellow-100">Reyting</div>
         </div>
@@ -180,6 +200,10 @@
 
 <script setup>
 import { ref } from 'vue'
+import {
+  BarChart3, BookOpen, Users, Zap, Star, TrendingUp, Smile, Activity,
+  Calendar, BookPlus, UserPlus, CheckCircle2, Trophy, Clock, ArrowUpRight
+} from 'lucide-vue-next'
 
 const stats = ref({
   books: 1234,
