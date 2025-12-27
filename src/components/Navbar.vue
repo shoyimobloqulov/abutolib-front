@@ -13,7 +13,7 @@
         </RouterLink>
 
         <!-- Desktop Menu -->
-        <div class="xl:flex sm:hidden items-center gap-1">          
+        <div class="hidden sm:flex items-center gap-1">          
           <RouterLink 
             to="/" 
             class="px-4 py-2 rounded-lg font-medium transition flex items-center gap-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50"
