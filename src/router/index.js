@@ -7,6 +7,8 @@ import LoginView from '../views/Auth/LoginView.vue'
 import RegisterView from '@/views/Auth/RegisterView.vue'
 import NewsView from '@/views/News/NewsView.vue'
 import NewsDetailView from '@/views/News/NewsDetailView.vue'
+import SubjectsView from '@/views/Subjects/SubjectsView.vue'
+import SubjectTestsView from '@/views/Subjects/SubjectTestsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +52,16 @@ const router = createRouter({
       path: '/news/:id',
       name: 'news-detail',
       component: NewsDetailView
+    },
+    {
+    path: '/subjects',
+    name: 'subjects',
+    component: SubjectsView
+    },
+    {
+      path: '/subjects/:id/tests',
+      name: 'subject-tests',
+      component: SubjectTestsView
     }
   ]
 })

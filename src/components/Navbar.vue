@@ -13,7 +13,7 @@
         </RouterLink>
 
         <!-- Desktop Menu -->
-        <div class="hidden sm:flex items-center gap-1">          
+        <div class="sm:flex items-center gap-1">          
           <RouterLink 
             to="/" 
             class="px-4 py-2 rounded-lg font-medium transition flex items-center gap-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50"
@@ -48,6 +48,15 @@
           >
             <Newspaper class="w-5 h-5" />
             Yangiliklar
+          </RouterLink>
+
+          <RouterLink 
+            to="/subjects" 
+            class="px-4 py-2 rounded-lg font-medium transition flex items-center gap-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+            :class="isActive('/subjects') && 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md font-semibold'"
+          >
+            <BookOpen class="w-5 h-5" />
+            Fanlar
           </RouterLink>
 
           <RouterLink 
@@ -118,6 +127,16 @@
         >
           <Newspaper class="w-5 h-5" />
           Yangiliklar
+        </RouterLink>
+
+        <RouterLink 
+          to="/subjects" 
+          class="block py-3 px-4 rounded-lg font-medium transition mb-1 flex items-center gap-3"
+          :class="isActive('/subjects') ? 'bg-blue-100 text-blue-600 font-semibold' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'"
+          @click="isMenuOpen = false"
+        >
+          <BookOpen class="w-5 h-5" />
+          Fanlar
         </RouterLink>
 
         <RouterLink 
