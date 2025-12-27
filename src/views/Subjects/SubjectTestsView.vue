@@ -18,7 +18,7 @@
             class="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center shadow-lg"
             :style="{ backgroundColor: subject.color + '20', border: '3px solid ' + subject.color }"
           >
-            <component :is="subject.icon" :style="{ color: subject.color }" class="w-8 h-8 md:w-10 md:h-10" />
+            <component :is="getIcon(subject.icon)" :style="{ color: subject.color }" class="w-8 h-8 md:w-10 md:h-10" />
           </div>
 
           <!-- Info -->
@@ -113,8 +113,7 @@
               <tr 
                 v-for="test in filteredTests" 
                 :key="test.id"
-                class="hover:bg-gray-50 transition cursor-pointer"
-                @click="startTest(test.id)"
+                class="hover:bg-gray-50 transition"
               >
                 <td class="px-6 py-4">
                   <div class="flex items-center gap-3">
@@ -159,8 +158,8 @@
                 </td>
                 <td class="px-6 py-4 text-center">
                   <button 
-                    @click.stop="startTest(test.id)"
-                    class="px-4 py-2 rounded-lg font-semibold text-sm transition-all"
+                    @click="startTest(test.id)"
+                    class="px-4 py-2 rounded-lg font-semibold text-sm transition-all hover:shadow-lg"
                     :style="{ 
                       backgroundColor: subject.color,
                       color: 'white'
@@ -179,8 +178,7 @@
           <div 
             v-for="test in filteredTests" 
             :key="test.id"
-            class="p-4 hover:bg-gray-50 transition cursor-pointer"
-            @click="startTest(test.id)"
+            class="p-4 hover:bg-gray-50 transition"
           >
             <div class="flex items-start gap-3 mb-3">
               <div 
@@ -223,7 +221,7 @@
             </div>
 
             <button 
-              @click.stop="startTest(test.id)"
+              @click="startTest(test.id)"
               class="w-full py-2.5 rounded-lg font-semibold text-sm transition-all"
               :style="{ 
                 backgroundColor: subject.color,
@@ -256,7 +254,14 @@ import {
   Clock, 
   HelpCircle,
   Search,
-  Calculator
+  Calculator,
+  Atom,
+  FlaskConical,
+  Languages,
+  Beaker,
+  Earth,
+  Laptop,
+  BookMarked
 } from 'lucide-vue-next'
 
 const route = useRoute()
@@ -266,15 +271,95 @@ const searchQuery = ref('')
 const difficultyFilter = ref('all')
 const sortBy = ref('newest')
 
-const subject = ref({
-  id: 1,
-  name: "Matematika",
-  description: "Algebra, geometriya va matematik tahlil bo'yicha testlar",
-  icon: Calculator,
-  color: "#3B82F6",
-  questionsCount: "5.2K",
-  studentsCount: "3.5K"
-})
+// Icon mapping
+const iconMap = {
+  'Calculator': Calculator,
+  'Atom': Atom,
+  'FlaskConical': FlaskConical,
+  'Languages': Languages,
+  'Beaker': Beaker,
+  'Earth': Earth,
+  'Laptop': Laptop,
+  'BookMarked': BookMarked
+}
+
+// Subjects data
+const subjectsData = {
+  1: {
+    id: 1,
+    name: "Matematika",
+    description: "Algebra, geometriya va matematik tahlil bo'yicha testlar",
+    icon: "Calculator",
+    color: "#3B82F6",
+    questionsCount: "5.2K",
+    studentsCount: "3.5K"
+  },
+  2: {
+    id: 2,
+    name: "Fizika",
+    description: "Mexanika, elektrodinamika va molekulyar fizika testlari",
+    icon: "Atom",
+    color: "#8B5CF6",
+    questionsCount: "4.8K",
+    studentsCount: "2.8K"
+  },
+  3: {
+    id: 3,
+    name: "Kimyo",
+    description: "Organik, noorganik va analitik kimyo bo'yicha savollar",
+    icon: "FlaskConical",
+    color: "#10B981",
+    questionsCount: "4.2K",
+    studentsCount: "2.3K"
+  },
+  4: {
+    id: 4,
+    name: "Ingliz tili",
+    description: "Grammatika, lug'at va o'qish ko'nikmalari testlari",
+    icon: "Languages",
+    color: "#F59E0B",
+    questionsCount: "7.5K",
+    studentsCount: "5.2K"
+  },
+  5: {
+    id: 5,
+    name: "Biologiya",
+    description: "Anatomiya, genetika va ekologiya bo'yicha testlar",
+    icon: "Beaker",
+    color: "#14B8A6",
+    questionsCount: "3.8K",
+    studentsCount: "2.1K"
+  },
+  6: {
+    id: 6,
+    name: "Geografiya",
+    description: "Umumiy geografiya va O'zbekiston geografiyasi testlari",
+    icon: "Earth",
+    color: "#06B6D4",
+    questionsCount: "3.2K",
+    studentsCount: "1.8K"
+  },
+  7: {
+    id: 7,
+    name: "Informatika",
+    description: "Dasturlash, algoritm va ma'lumotlar bazasi testlari",
+    icon: "Laptop",
+    color: "#EC4899",
+    questionsCount: "6.1K",
+    studentsCount: "4.3K"
+  },
+  8: {
+    id: 8,
+    name: "Tarix",
+    description: "Jahon tarixi va O'zbekiston tarixi bo'yicha savollar",
+    icon: "BookMarked",
+    color: "#EF4444",
+    questionsCount: "4.5K",
+    studentsCount: "2.6K"
+  }
+}
+
+const subject = ref({})
 
 const tests = ref([
   {
@@ -377,6 +462,10 @@ const filteredTests = computed(() => {
   return result
 })
 
+const getIcon = (iconName) => {
+  return iconMap[iconName] || Calculator
+}
+
 const getDifficultyText = (difficulty) => {
   const map = {
     easy: 'Oson',
@@ -395,7 +484,9 @@ const startTest = (testId) => {
 }
 
 onMounted(() => {
-  // Bu yerda API dan fan ma'lumotlarini yuklaymiz
-  console.log('Subject ID:', route.params.id)
+  const subjectId = route.params.id
+  subject.value = subjectsData[subjectId] || subjectsData[1]
+  console.log('Subject ID:', subjectId)
+  console.log('Tests count:', tests.value.length)
 })
 </script>
