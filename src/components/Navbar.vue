@@ -10,7 +10,12 @@
           <span class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
             Abutolib
           </span>
+          <Snowflake
+            :size="24"
+            class="transition hover:rotate-12 hover:scale-110"
+          />
         </RouterLink>
+
 
         <!-- Desktop Menu -->
         <div class="sm:flex items-center gap-1">          
@@ -166,7 +171,7 @@
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { Home, Newspaper ,BookMarked, BarChart3, Phone, Lock, Menu, X, BookOpen } from 'lucide-vue-next'
-
+import Snowflake from '../components/SnowFlake.vue'
 const route = useRoute()
 const isMenuOpen = ref(false)
 
