@@ -1,4 +1,4 @@
-name: Build and Deploy Vue App to reg.ru Hosting
+name: Build and Deploy Vue App to reg.ru Hosting and Handle 401 Errors
 
 on:
   push:
