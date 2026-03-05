@@ -1,9 +1,20 @@
 <template>
-  <div id="app" class="min-h-screen bg-gray-50 flex flex-col">
+  <div class="min-h-screen bg-[#F8FAFC] font-sans">
     <Navbar />
-    <main class="container mx-auto px-4 py-8 flex-grow">
-      <RouterView />
+    
+    <main class="grow w-full">
+      <div class="container mx-auto px-4 py-8">
+        <RouterView v-slot="{ Component }">
+          <transition 
+            name="fade" 
+            mode="out-in"
+          >
+            <component :is="Component" />
+          </transition>
+        </RouterView>
+      </div>
     </main>
+
     <Footer />
   </div>
 </template>
@@ -13,3 +24,15 @@ import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 import { RouterView } from 'vue-router'
 </script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

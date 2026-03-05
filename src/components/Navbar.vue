@@ -1,166 +1,67 @@
 <template>
-  <nav class="bg-white shadow-lg sticky top-0 z-50 backdrop-blur-sm bg-white/95">
+  <nav class="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/95 backdrop-blur-md">
     <div class="container mx-auto px-4">
-      <div class="flex justify-between items-center py-4">
-        <!-- Logo -->
-        <RouterLink to="/" class="flex items-center space-x-3 group">
-          <div class="bg-gradient-to-br from-blue-600 to-indigo-600 p-3 rounded-xl shadow-lg group-hover:shadow-xl transition">
-            <BookOpen class="w-8 h-8 text-white" />
+      <div class="flex h-20 items-center justify-between">
+        
+        <RouterLink to="/" class="flex items-center gap-2.5 shrink-0">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-lg">
+            <svg viewBox="0 0 24 24" fill="none" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 4.5V19.5M4.5 12H19.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M17 7L7 17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+            </svg>
           </div>
-          <span class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-            Abutolib
-          </span>
-          <Snowflake
-            :size="24"
-            class="transition hover:rotate-12 hover:scale-110"
-          />
+          <div class="flex flex-col">
+            <span class="text-lg font-black leading-none text-gray-900 uppercase">Abutolib</span>
+            <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Test tizimi</span>
+          </div>
         </RouterLink>
 
-
-        <!-- Desktop Menu -->
-        <div class="sm:flex items-center gap-1">          
+        <div class="nav-links hidden md:flex items-center gap-2">
           <RouterLink 
-            to="/" 
-            class="px-4 py-2 rounded-lg font-medium transition flex items-center gap-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-            :class="isActive('/') && 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md font-semibold'"
+            v-for="link in navLinks" 
+            :key="link.path"
+            :to="link.path"
+            class="px-3 py-2 text-sm font-semibold rounded-lg flex items-center gap-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+            active-class="active-nav-link"
           >
-            <Home class="w-5 h-5" />
-            Bosh sahifa
+            <component :is="link.icon" class="w-4.5 h-4.5" />
+            {{ link.name }}
           </RouterLink>
 
-          <RouterLink 
-            to="/about" 
-            class="px-4 py-2 rounded-lg font-medium transition flex items-center gap-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-            :class="isActive('/about') && 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md font-semibold'"
-          >
-            <BookMarked class="w-5 h-5" />
-            Biz haqimizda
-          </RouterLink>
-
-          <RouterLink 
-            to="/statistics" 
-            class="px-4 py-2 rounded-lg font-medium transition flex items-center gap-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-            :class="isActive('/statistics') && 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md font-semibold'"
-          >
-            <BarChart3 class="w-5 h-5" />
-            Statistika
-          </RouterLink>
-
-          <RouterLink 
-            to="/news" 
-            class="px-4 py-2 rounded-lg font-medium transition flex items-center gap-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-            :class="isActive('/news') && 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md font-semibold'"
-          >
-            <Newspaper class="w-5 h-5" />
-            Yangiliklar
-          </RouterLink>
-
-          <RouterLink 
-            to="/subjects" 
-            class="px-4 py-2 rounded-lg font-medium transition flex items-center gap-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-            :class="isActive('/subjects') && 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md font-semibold'"
-          >
-            <BookOpen class="w-5 h-5" />
-            Fanlar
-          </RouterLink>
-
-          <RouterLink 
-            to="/contact" 
-            class="px-4 py-2 rounded-lg font-medium transition flex items-center gap-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-            :class="isActive('/contact') && 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md font-semibold'"
-          >
-            <Phone class="w-5 h-5" />
-            Bog'lanish
-          </RouterLink>
+          <div class="mx-2 h-6 w-[1px] bg-gray-200"></div>
 
           <RouterLink 
             to="/login" 
-            class="ml-4 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-bold hover:from-blue-700 hover:to-indigo-700 transition transform hover:scale-105 shadow-lg flex items-center gap-2"
+            class="px-5 py-2.5 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-blue-600 transition-all shadow-md flex items-center gap-2"
           >
-            <Lock class="w-5 h-5" />
+            <Lock class="w-4 h-4" />
             Kirish
           </RouterLink>
         </div>
 
-        <!-- Mobile menu button -->
         <button 
           @click="isMenuOpen = !isMenuOpen" 
-          class="lg:hidden text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-100 transition"
+          class="block p-2 rounded-xl bg-gray-50 border border-gray-100 text-gray-600"
         >
-          <Menu v-if="!isMenuOpen" class="w-7 h-7" />
-          <X v-else class="w-7 h-7" />
+          <Menu v-if="!isMenuOpen" class="w-6 h-6" />
+          <X v-else class="w-6 h-6" />
         </button>
       </div>
 
-      <!-- Mobile Menu -->
-      <div v-if="isMenuOpen" class="lg:hidden pb-4 border-t border-gray-200 mt-2 pt-4">
+      <div 
+        v-if="isMenuOpen" 
+        class="md:hidden flex flex-col gap-2 pb-6 pt-2"
+      >
         <RouterLink 
-          to="/" 
-          class="block py-3 px-4 rounded-lg font-medium transition mb-1 flex items-center gap-3"
-          :class="isActive('/') ? 'bg-blue-100 text-blue-600 font-semibold' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'"
+          v-for="link in navLinks" 
+          :key="link.path"
+          :to="link.path"
           @click="isMenuOpen = false"
+          class="flex items-center gap-4 p-4 rounded-xl font-bold text-gray-700 hover:bg-gray-50 transition-all"
+          active-class="bg-blue-600 text-white shadow-lg"
         >
-          <Home class="w-5 h-5" />
-          Bosh sahifa
-        </RouterLink>
-
-        <RouterLink 
-          to="/about" 
-          class="block py-3 px-4 rounded-lg font-medium transition mb-1 flex items-center gap-3"
-          :class="isActive('/about') ? 'bg-blue-100 text-blue-600 font-semibold' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'"
-          @click="isMenuOpen = false"
-        >
-          <BookMarked class="w-5 h-5" />
-          Biz haqimizda
-        </RouterLink>
-
-        <RouterLink 
-          to="/statistics" 
-          class="block py-3 px-4 rounded-lg font-medium transition mb-1 flex items-center gap-3"
-          :class="isActive('/statistics') ? 'bg-blue-100 text-blue-600 font-semibold' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'"
-          @click="isMenuOpen = false"
-        >
-          <BarChart3 class="w-5 h-5" />
-          Statistika
-        </RouterLink>
-
-        <RouterLink 
-          to="/news" 
-          class="block py-3 px-4 rounded-lg font-medium transition mb-1 flex items-center gap-3"
-          :class="isActive('/news') ? 'bg-blue-100 text-blue-600 font-semibold' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'"
-          @click="isMenuOpen = false"
-        >
-          <Newspaper class="w-5 h-5" />
-          Yangiliklar
-        </RouterLink>
-
-        <RouterLink 
-          to="/subjects" 
-          class="block py-3 px-4 rounded-lg font-medium transition mb-1 flex items-center gap-3"
-          :class="isActive('/subjects') ? 'bg-blue-100 text-blue-600 font-semibold' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'"
-          @click="isMenuOpen = false"
-        >
-          <BookOpen class="w-5 h-5" />
-          Fanlar
-        </RouterLink>
-
-        <RouterLink 
-          to="/contact" 
-          class="block py-3 px-4 rounded-lg font-medium transition mb-1 flex items-center gap-3"
-          :class="isActive('/contact') ? 'bg-blue-100 text-blue-600 font-semibold' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'"
-          @click="isMenuOpen = false"
-        >
-          <Phone class="w-5 h-5" />
-          Bog'lanish
-        </RouterLink>
- 
-        <RouterLink 
-          to="/login" 
-          class="block py-3 px-4 mt-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-bold text-center shadow-lg flex items-center justify-center gap-2"
-          @click="isMenuOpen = false"
-        >
-          <Lock class="w-5 h-5" />
-          Kirish
+          <component :is="link.icon" class="w-5 h-5" />
+          {{ link.name }}
         </RouterLink>
       </div>
     </div>
@@ -169,13 +70,28 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
-import { Home, Newspaper ,BookMarked, BarChart3, Phone, Lock, Menu, X, BookOpen } from 'lucide-vue-next'
-import Snowflake from '../components/SnowFlake.vue'
-const route = useRoute()
-const isMenuOpen = ref(false)
+import { Home, Newspaper, BookMarked, BarChart3, Phone, Lock, Menu, X, BookOpen } from 'lucide-vue-next'
 
-const isActive = (path) => {
-  return route.path === path
-}
+const isMenuOpen = ref(false)
+const navLinks = [
+  { name: 'Bosh sahifa', path: '/', icon: Home },
+  { name: 'Biz haqimizda', path: '/about', icon: BookMarked },
+  { name: 'Statistika', path: '/statistics', icon: BarChart3 },
+  { name: 'Yangiliklar', path: '/news', icon: Newspaper },
+  { name: 'Fanlar', path: '/subjects', icon: BookOpen },
+  { name: "Bog'lanish", path: '/contact', icon: Phone },
+]
 </script>
+
+<style scoped>
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex !important;
+  }
+}
+
+.active-nav-link {
+  color: #2563eb !important; /* blue-600 */
+  background-color: #eff6ff !important; /* blue-50 */
+}
+</style>
